@@ -12,7 +12,6 @@ struct LocationDetailView: View {
     let columns = [GridItem(.flexible()), GridItem(.flexible()), GridItem(.flexible())]
     
     var body: some View {
-        NavigationView {
             VStack(spacing: 16) {
                 Image("default-banner-asset")
                     .resizable()
@@ -31,6 +30,7 @@ struct LocationDetailView: View {
                     .lineLimit(3)
                     .minimumScaleFactor(0.75)
                     .padding(.horizontal)
+                    .frame(height: 70)
                 
                 ZStack {
                     Capsule()
@@ -67,25 +67,19 @@ struct LocationDetailView: View {
                     .bold()
                     .font(.title2)
                 
-                LazyVGrid(columns: columns, content: {
-                    FirstNameAvatarView(firstName: "Novica")
-                    FirstNameAvatarView(firstName: "Dan")
-                    FirstNameAvatarView(firstName: "Rob")
-                    FirstNameAvatarView(firstName: "Damien")
-                    FirstNameAvatarView(firstName: "Aidan")
-                })
+                ScrollView {
+                    LazyVGrid(columns: columns, content: {
+                        FirstNameAvatarView(firstName: "Novica")
+                        FirstNameAvatarView(firstName: "Dan")
+                        FirstNameAvatarView(firstName: "Rob")
+                        FirstNameAvatarView(firstName: "Damien")
+                        FirstNameAvatarView(firstName: "Aidan")
+                    })
+                }
                 
                 Spacer()
             }
             .navigationBarTitle("Chipotle", displayMode: .inline)
-            .toolbar(content: {
-                Button("Dismiss") {
-                    print("Dismiss Tapped")
-                }
-            })
-        }
-        .accentColor(.brandPrimary)
-        .colorScheme(.dark)
     }
 }
 
